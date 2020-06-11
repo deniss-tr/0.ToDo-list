@@ -37,13 +37,12 @@ let myCalendar = new VanillaCalendar({
     let currentDate = new Date().toLocaleDateString('ru');
     let selectedDate = new Date(data.date).toLocaleDateString('ru')
     let num = selectedDate.split('.')[0] - currentDate.split('.')[0];
-    state.currentDay = {date: selectedDate, num: num};  
+    state.currentDay = {date: selectedDate, num: num};
   }
 })
 
 
 function createMiniTask(task) {
-  debugger
   let miniTask = document.createElement('div');
   miniTask.setAttribute(`id`, task.id);
   miniTask.draggable="true";
@@ -86,13 +85,13 @@ function clickOnMiniTask(e){
 // Click on Done
   if(e.target == btnDone){
     if(this.classList.contains('check')) {
-      state.tasks.forEach((task) => { 
+      state.tasks.forEach((task) => {
         if(task.id == this.id) {
          task.done = false;
-      }}); 
+      }});
     showTasks(state)
     } else {
-      state.tasks.forEach((task) => { 
+      state.tasks.forEach((task) => {
         if(task.id == this.id) {
          task.done = true;
       }});
@@ -107,7 +106,7 @@ function clickOnMiniTask(e){
   }
 // Click on Edit
   if(e.target == btnEdit){
-    state.tasks.forEach((task) => { 
+    state.tasks.forEach((task) => {
       if(task.id == this.id) {
         textInput.value = task.text;
         modal.setAttribute(`id`, task.id);
@@ -141,7 +140,7 @@ function showTasks(state) {
       let blockTitle = document.createElement("div");
       blockTitle.innerHTML = `<p class='temp'></p><p class ='date'></p>`
       window[newVar].prepend(blockTitle);
-      container.append(window[newVar]); 
+      container.append(window[newVar]);
     }
   }
 
@@ -164,7 +163,7 @@ modalClose.addEventListener('click', () => {
 
 function makeNewState(divId){
   //EDIT
-  
+
   if(divId != 'null'){
 
     let editedTasks = state.tasks.map((task) => {
@@ -183,7 +182,7 @@ function makeNewState(divId){
       if(a.title.split('.').join('') > b.title.split('.').join('')){
         return 1;
       }
-      return 0; 
+      return 0;
     })
     state.tasks = sortedTasks;
 
@@ -191,11 +190,11 @@ function makeNewState(divId){
   } else {
 
     state.tasks.push({
-      id: state.currentId, 
-      title: state.currentDay.date, 
-      text: textInput.value, 
-      done: false, 
-      dayNr: state.currentDay.num, 
+      id: state.currentId,
+      title: state.currentDay.date,
+      text: textInput.value,
+      done: false,
+      dayNr: state.currentDay.num,
       dayTempr: state.days[state.currentDay.num] ? state.days[state.currentDay.num].temp.day : 'no data'
     });
     state.tasks.sort((a, b) => {
@@ -205,7 +204,7 @@ function makeNewState(divId){
       if(a.title.split('.').join('') > b.title.split('.').join('')){
         return 1;
       }
-      return 0; 
+      return 0;
     })
     state.currentId += 1;
   };
@@ -222,7 +221,7 @@ form.addEventListener('submit', (e) => {
 });
 
 function dragAndDrop() {
-  
+
   let dragVar;
   let dragDate;
   let dragTemp;
@@ -263,7 +262,7 @@ function dragAndDrop() {
       if(a.title.split('.').join('') > b.title.split('.').join('')){
         return 1;
       }
-      return 0; 
+      return 0;
     })
     state.tasks = sortedTasks;
 
