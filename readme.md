@@ -10,7 +10,7 @@
   <li>implantation side code (calendar) and adaptating to use it functionality;</li>
   <li>sort operations;</li>
   <li>...</li>
-<ul>
+</ul>
 
 <h3>Usage</h3>
 <p>Simple open index file.</p>
